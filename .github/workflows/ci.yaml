@@ -27,7 +27,7 @@ jobs:
         with:
           miniforge-version: latest
           conda-build-version: '*'
-          channels: conda-forge
+          channels: conda-forge,nodefaults
           activate-environment: test_env
           python-version: "3.12"
 
