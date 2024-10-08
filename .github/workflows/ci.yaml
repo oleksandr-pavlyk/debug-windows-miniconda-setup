@@ -25,9 +25,10 @@ jobs:
 
       - uses: conda-incubator/setup-miniconda@v3
         with:
+          miniforge-version: latest
           auto-update-conda: true
           conda-build-version: '*'
-          miniconda-version: 'latest'
+          channels: 'conda-forge'
           activate-environment: test_env
           python-version: "3.12"
 
@@ -38,6 +39,9 @@ jobs:
           mkdir ${{ env.workdir }}\channel\win-64
           cp artifacts\dpctl-*.tar.bz2 ${{ env.workdir }}\channel\win-64
           dir ${{ env.workdir }}\channel\win-64
+
+      - name: Remove defaults channel
+        run: conda config --remove channels defaults
 
       - name: Index the channel
         shell: cmd /C CALL {0}
