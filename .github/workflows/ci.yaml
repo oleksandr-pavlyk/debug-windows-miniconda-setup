@@ -35,8 +35,9 @@ jobs:
         shell: cmd /C CALL {0}
         run: |
           echo ${{ env.workdir }}
+          mkdir ${{ env.workdir }}\channel
           mkdir ${{ env.workdir }}\channel\win-64
-          cp artifacts\dpctl-*.tar.bz2 ${{ env.workdir }}\channel\win-64
+          copy artifacts\dpctl-*.tar.bz2 ${{ env.workdir }}\channel\win-64
           dir ${{ env.workdir }}\channel\win-64
 
       - name: Remove defaults channel
@@ -45,6 +46,12 @@ jobs:
       - name: Index the channel
         shell: cmd /C CALL {0}
         run: conda index ${{ env.workdir }}\channel
+
+      - name: List content of the channels
+        shell: cmd /C CALL {0}
+        run: |
+          dir ${{ env.workdir }}\channel
+          dir ${{ env.workdir }}\channel\win-64
 
       - name: Dump dpctl version info from created channel into ver.json
         shell: cmd /C CALL {0}
