@@ -26,9 +26,8 @@ jobs:
       - uses: conda-incubator/setup-miniconda@v3
         with:
           miniforge-version: latest
-          auto-update-conda: true
           conda-build-version: '*'
-          channels: 'conda-forge'
+          channels: conda-forge
           activate-environment: test_env
           python-version: "3.12"
 
